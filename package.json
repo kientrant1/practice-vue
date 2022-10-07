@@ -12,6 +12,7 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/node": "^18.8.3",
     "@vitejs/plugin-vue": "^2.2.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",

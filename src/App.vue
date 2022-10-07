@@ -10,6 +10,7 @@ import MyDirectives from './components/MyDirectives.vue'
 </script>
 
 <template>
+  <h2 v-positionSticky:top="10" :style="{ background: '#fff'}">Practice Vue</h2>
   <h3 :class="['header-section']">Composable Function</h3>
   <MyComposableFunction msg="this is composable function" />
   <h3 :class="['header-section']">Bindings</h3>

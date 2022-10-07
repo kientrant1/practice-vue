@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import useWindowResize from 'src/components/composableFunctions/useWindowResize'
+// import useWindowResize from '@/components/composableFunctions/useWindowResize'
 const state = defineProps<{
   msg: string
 }>()
