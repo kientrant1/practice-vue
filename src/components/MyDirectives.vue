@@ -44,6 +44,4 @@ const vChangeTextColor = {
       {{ item.name }} - {{ item.share }}%
     </li>
   </ul>
-
-  <div>Custom Directives</div>
 </template>

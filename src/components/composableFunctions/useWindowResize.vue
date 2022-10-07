@@ -1,3 +1,4 @@
+<script lang="ts">
 import { ref, onMounted, onUnmounted } from "vue"
 
 const useWindowResize = () => {
@@ -19,4 +20,5 @@ const useWindowResize = () => {
   }
 }
 
-export default useWindowResize;
+export default useWindowResize
+</script>
