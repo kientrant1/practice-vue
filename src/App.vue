@@ -1,21 +1,35 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import MyComposableFunction from "./components/MyComposableFunction.vue";
+import MyBindings from './components/MyBindings.vue'
+import MyEvents from './components/MyEvents.vue'
+import MyReactiveState from './components/MyReactiveState.vue'
+import MyWatchers from './components/MyWatchers.vue'
+import MyDirectives from './components/MyDirectives.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <h3 :class="['header-section']">Composable Function</h3>
+  <MyComposableFunction msg="this is composable function" />
+  <h3 :class="['header-section']">Bindings</h3>
+  <MyBindings />
+  <h3 :class="['header-section']">Events</h3>
+  <MyEvents />
+  <h3 :class="['header-section']">Reactive State</h3>
+  <MyReactiveState />
+  <h3 :class="['header-section']">Watchers</h3>
+  <MyWatchers />
+  <h3 :class="['header-section']">Directives</h3>
+  <MyDirectives />
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.header-section {
+  font-weight: bold;
+}
+
+.header-section::before {
+  content: "----------";
 }
 </style>
