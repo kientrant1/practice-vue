@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 // import useWindowResize from 'src/components/composableFunctions/useWindowResize'
 const state = defineProps<{
   msg: string

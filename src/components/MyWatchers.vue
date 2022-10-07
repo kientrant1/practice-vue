@@ -16,6 +16,7 @@ const unWatch = watch(count, (newValue) => {
 })
 
 const unWatchEffect = watchEffect(() => {
+  // eslint-disable-next-line no-console
   console.log(`watchEffect - count: ${count.value}`)
 });
 

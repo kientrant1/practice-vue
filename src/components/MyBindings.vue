@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { StyleValue } from 'vue' 
-const fontBoldStyle: { fontWeight: StyleValue | undefined } = { fontWeight: 'bold' }
 const message = ref<string>('')
 const messageModel = ref<string>('')
 

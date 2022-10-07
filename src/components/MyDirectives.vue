@@ -18,7 +18,7 @@ const listLanguages = [
 ]
 
 const vClicked = {
-  mounted: (el: HTMLElement, bindings: any, vnode: any, previousVnode: any) => {
+  mounted: (el: HTMLElement) => {
     el.classList.toggle('sdfsd')
   }
 }
