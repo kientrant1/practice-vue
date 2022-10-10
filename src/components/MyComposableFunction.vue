@@ -3,7 +3,8 @@ import useWindowResize from '@/components/composableFunctions/useWindowResize'
 const state = defineProps<{
   msg: string
 }>()
-const { width, height } = useWindowResize();
+const { width, height } = useWindowResize()
+
 </script>
 
 <template>
