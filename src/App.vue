@@ -7,10 +7,11 @@ import MyEvents from './components/MyEvents.vue'
 import MyReactiveState from './components/MyReactiveState.vue'
 import MyWatchers from './components/MyWatchers.vue'
 import MyDirectives from './components/MyDirectives.vue'
+import MySFCs from './components/MySFCs.vue'
 </script>
 
 <template>
-  <h2 v-positionSticky:top="10" :style="{ background: '#fff'}">Practice Vue</h2>
+  <h2 v-position-sticky:top="10" :style="{ background: '#fff'}">Practice Vue</h2>
   <h3 :class="['header-section']">Composable Function</h3>
   <MyComposableFunction msg="this is composable function" />
   <h3 :class="['header-section']">Bindings</h3>
@@ -23,6 +24,8 @@ import MyDirectives from './components/MyDirectives.vue'
   <MyWatchers />
   <h3 :class="['header-section']">Directives</h3>
   <MyDirectives />
+  <h3 :class="['header-section']">Components</h3>
+  <MySFCs />
 </template>
 
 <style>
