@@ -5,15 +5,17 @@ import { ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmou
 // withDefaults compiler macro https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
 interface IProps {
   hello: string
-  message?: string
+  message?: string,
+  log?: boolean
 }
 const count = ref<number>(0)
 const props = withDefaults(defineProps<IProps>(), {
   message: 'Wellcome to Vu',
+  log: true
 })
 
 const logMessage = (message: string, color: string = 'black') => {
-  console.log("%c" + message, "color:" + color)
+  props.log && console.log("%c" + message, "color:" + color)
 }
 
 const simulateError = () => {

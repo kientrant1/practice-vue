@@ -5,6 +5,7 @@ import HelloComponent from '../components/sfcs/HelloComponent.vue'
 import BlogPost from '../components/sfcs/BlogPost.vue'
 import type { IBlogPost } from '../components/sfcs/BlogPost.vue'
 import InjectionMessage from '../components/sfcs/InjectionMessage.vue'
+import TemplateRef from '../components/sfcs/TemplateRef.vue'
 
 const toogleComp = ref<boolean>(true)
 const blogs = reactive<IBlogPost[]>([
@@ -22,14 +23,17 @@ const injectionMessage = ref<string>()
 const updateMessage = (message: string) => {
   injectionMessage.value = message
 }
-provide('injectionMessage', { message: readonly(injectionMessage), updateMessage })
+provide('injectionMessage', {
+  message: readonly(injectionMessage),
+  updateMessage,
+})
 </script>
 
 <template>
   <div>
     <input v-model="toogleComp" type="checkbox" value="true" /> Show Hello
     Component
-    <HelloComponent v-if="toogleComp" hello="Hello there, " />
+    <HelloComponent v-if="toogleComp" hello="Hello there, " :log="true" />
   </div>
   <div>
     <BlogPost
@@ -54,6 +58,10 @@ provide('injectionMessage', { message: readonly(injectionMessage), updateMessage
     <h3>Injection Message</h3>
     Parent Input <input v-model="injectionMessage" type="text" />
     <InjectionMessage />
+  </div>
+  <div>
+    <h3>Template Ref</h3>
+    <TemplateRef />
   </div>
 </template>
 
