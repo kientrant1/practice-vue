@@ -6,6 +6,7 @@ import BlogPost from '../components/sfcs/BlogPost.vue'
 import type { IBlogPost } from '../components/sfcs/BlogPost.vue'
 import InjectionMessage from '../components/sfcs/InjectionMessage.vue'
 import TemplateRef from '../components/sfcs/TemplateRef.vue'
+import BuildInComponent from '../components/sfcs/BuildInComponent.vue'
 
 const toogleComp = ref<boolean>(true)
 const blogs = reactive<IBlogPost[]>([
@@ -54,6 +55,7 @@ provide('injectionMessage', {
       <h3 :class="'scoped-slot-header'">{{ slotProps.text }}</h3>
     </BlogPost>
   </div>
+  <h3>Component communication</h3>
   <div>
     <h3>Injection Message</h3>
     Parent Input <input v-model="injectionMessage" type="text" />
@@ -62,6 +64,9 @@ provide('injectionMessage', {
   <div>
     <h3>Template Ref</h3>
     <TemplateRef />
+  </div>
+  <div>
+    <BuildInComponent />
   </div>
 </template>
 
