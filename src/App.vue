@@ -25,8 +25,8 @@ import MySFCs from './components/MySFCs.vue'
   <h3 :class="['header-section']">Directives</h3>
   <MyDirectives />
   <h3 :class="['header-section']">Components</h3>
+  <ErrorMessage message="This is global message via props"/>
   <MySFCs />
-  <ErrorMessage message="sample error message"/>
 </template>
 
 <style>

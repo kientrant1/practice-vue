@@ -1,17 +1,14 @@
 <script setup lang="ts">
-/* eslint-disable no-console */
-import { ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted,
-  onErrorCaptured } from 'vue'
-// withDefaults compiler macro https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
+import { inject } from 'vue'
 interface IProps {
   message: string
 }
 const props = defineProps<IProps>()
-
+const globalMessage = inject<string>('globalMessage')
 </script>
 
 <template>
-  <p class="error-message">Error message: {{ props.message }}</p>
+  <p class="error-message">Error message: <i>{{ props.message }}</i> and <i>{{globalMessage}}</i></p>
 </template>
 
 <style scope>
