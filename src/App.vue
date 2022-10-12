@@ -14,7 +14,7 @@ const currentRouteName = computed(() => useRoute().name)
     </h2>
     <ul>
       <li v-for="(route, index) in myRoutes" :key="index">
-        <RouterLink :to="route.path">{{ route.name }}</RouterLink>
+        <RouterLink :to="route.path" active-class="active-route">{{ route.name }}</RouterLink>
       </li>
     </ul>
     <GlobalHeader :header="currentRouteName" />
@@ -25,5 +25,8 @@ const currentRouteName = computed(() => useRoute().name)
 <style>
 .main-container {
   min-height: 110vh;
+}
+.active-route {
+  color: blue;
 }
 </style>

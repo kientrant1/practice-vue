@@ -2,24 +2,11 @@
 /* eslint-disable no-console */
 import { ref } from 'vue'
 import { vAutoScrollToElement, vChangeTextColor } from '../components/composableFunctions/customDirectives.vue'
+import { listLanguages } from '@/mocks/listLanguagues'
+
 const myName = { firstName: 'Kien', lastName: 'Tran'}
 const isShowList = ref<boolean>(false)
 const colorItem = ref<string>('green')
-
-const listLanguages = [
-  {
-    name: 'Python',
-    share: 29,
-  },
-  {
-    name: 'Java',
-    share: 17,
-  },
-  {
-    name: 'Javascript',
-    share: 54,
-  },
-]
 
 </script>
 
