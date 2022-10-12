@@ -8,7 +8,7 @@ const useWindowResize = (): { width: Ref<number>; height: Ref<number> } => {
 
   const handleWindowResize = (event: UIEvent) => {
     const target = event.currentTarget as Window
-    width.value = target.outerWidth
+    width.value = target.innerWidth
     height.value = target.innerHeight
   }
 

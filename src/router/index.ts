@@ -45,12 +45,12 @@ export const routes = [
     component: MyWatchers,
   },
   {
-    path: '/myWatchers',
+    path: '/myDirectives',
     name: 'Directives',
     component: MyDirectives,
   },
   {
-    path: '/myWatchers',
+    path: '/mySFCs',
     name: 'Single File Component',
     component: MySFCs,
   },
