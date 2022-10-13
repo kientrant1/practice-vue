@@ -18,6 +18,7 @@ const useFetchData = <T>({ url }: IParams): IOutput<T> => {
 
   const getData = async () => {
     try {
+      // https://fakestoreapi.com/docs
       const res = await fetch(url.value)
       data.value = await res.json()
       loading.value = false

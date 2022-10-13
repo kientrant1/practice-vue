@@ -9,7 +9,10 @@ import MyWatchers from '../views/MyWatchers.vue'
 import MyDirectives from '../views/MyDirectives.vue'
 import MySFCs from '../views/MySFCs.vue'
 import MyRouting from '../views/MyRouting.vue'
-import ProductDetailComponent from '../components/sfcs/ProductDetailComponent.vue'
+
+// Lazy loading component
+const ProductDetailComponent = () =>
+  import('../components/sfcs/ProductDetailComponent.vue')
 
 export const routes = [
   // no route is matched. Can replace with 404 page
@@ -66,12 +69,15 @@ export const routes = [
         path: 'product/:id',
         name: 'product',
         component: ProductDetailComponent,
+        beforeEnter: (
+          to: RouteLocationNormalized,
+          from: RouteLocationNormalized
+        ) => {
+          // eslint-disable-next-line no-console
+          console.log('Router:Config ------- 2. beforeEnter', to, from)
+        },
       },
     ],
-    beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-      // eslint-disable-next-line no-console
-      console.log('Router:Config ------- 2. beforeEnter', to, from)
-    },
   },
 ]
 
@@ -80,19 +86,25 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-  // eslint-disable-next-line no-console
-  console.log('Router:Global ------- 1. beforeEach', to, from)
-})
+router.beforeEach(
+  (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+    // eslint-disable-next-line no-console
+    console.log('Router:Global ------- 1. beforeEach', to, from)
+  }
+)
 
-router.beforeResolve((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-  // eslint-disable-next-line no-console
-  console.log('Router:Global ------- 3. beforeResolve', to, from)
-})
+router.beforeResolve(
+  (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+    // eslint-disable-next-line no-console
+    console.log('Router:Global ------- 3. beforeResolve', to, from)
+  }
+)
 
-router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-   // eslint-disable-next-line no-console
-  console.log('Router:Global ------- 4. afterEach', to, from)
-})
+router.afterEach(
+  (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+    // eslint-disable-next-line no-console
+    console.log('Router:Global ------- 4. afterEach', to, from)
+  }
+)
 
 export default router

@@ -12,9 +12,11 @@ const currentRouteName = computed(() => useRoute().name)
     <h2 v-position-sticky:top="10" :style="{ background: '#fff' }">
       Practice Vue
     </h2>
-    <ul>
-      <li v-for="(route, index) in myRoutes" :key="index">
-        <RouterLink :to="route.path" active-class="active-route">{{ route.name }}</RouterLink>
+    <ul class="menu">
+      <li v-for="(route, index) in myRoutes" :key="index" class="menu-item">
+        <RouterLink :to="route.path" active-class="active-route">{{
+          route.name
+        }}</RouterLink>
       </li>
     </ul>
     <GlobalHeader :header="currentRouteName" />
@@ -26,6 +28,18 @@ const currentRouteName = computed(() => useRoute().name)
 .main-container {
   min-height: 110vh;
 }
+
+.menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.menu .menu-item {
+  padding: 0 5px;
+  border-right: 1px solid black;
+}
+
 .active-route {
   color: blue;
 }

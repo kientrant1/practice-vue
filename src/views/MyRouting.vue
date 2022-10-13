@@ -20,6 +20,9 @@ onBeforeRouteUpdate((to: RouteLocationNormalized, from: RouteLocationNormalized 
 onBeforeRouteLeave((to: any, from: any) => {
   // eslint-disable-next-line no-console
   console.log('Router:Component ------- 6. onBeforeRouteLeave', to, from)
+  if (!confirm("Are you sure want to leave page?")) {
+    return false
+  }
 })
 </script>
 
