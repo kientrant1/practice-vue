@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 interface IProps {
-  header: string
+  header: string;
+  subLevel?: boolean;
 }
 const props = defineProps<IProps>()
 const globalMessage = inject<string>('globalMessage')
 </script>
 
 <template>
-  <h3 class="header-section">{{ props.header }}</h3>
+  <h3 :class="['header-section', {'sub-header': props.subLevel}]">{{ props.header }}</h3>
   <p class="note">
     <i>({{ globalMessage }})</i>
   </p>
@@ -18,6 +19,10 @@ const globalMessage = inject<string>('globalMessage')
 .header-section {
   font-weight: bold;
   color: blue;
+}
+
+.sub-header::before {
+  margin-left: 30px
 }
 
 .header-section::before {

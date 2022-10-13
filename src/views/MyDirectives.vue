@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable no-console */
 import { ref } from 'vue'
-import { vAutoScrollToElement, vChangeTextColor } from '../components/composableFunctions/customDirectives.vue'
+import { vAutoScrollToElement, vChangeTextColor } from '../directives/customDirectives.vue'
 import { listLanguages } from '@/mocks/listLanguagues'
 
 const myName = { firstName: 'Kien', lastName: 'Tran'}

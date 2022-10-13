@@ -8,28 +8,7 @@ import MyWatchers from '../views/MyWatchers.vue'
 import MyDirectives from '../views/MyDirectives.vue'
 import MySFCs from '../views/MySFCs.vue'
 import MyRouting from '../views/MyRouting.vue'
-import LanguagueDetailComponent from '../components/sfcs/LanguagueDetailComponent.vue'
-
-export const languageRoutes = [
-  {
-    name: 'Python',
-    path: 'lang/:id',
-    id: 1,
-    component: LanguagueDetailComponent,
-  },
-  {
-    name: 'Java',
-    path: 'lang/:id',
-    id: 2,
-    component: LanguagueDetailComponent,
-  },
-  {
-    name: 'Javascript',
-    path: 'lang/:id',
-    id: 3,
-    component: LanguagueDetailComponent,
-  },
-]
+import ProductDetailComponent from '../components/sfcs/ProductDetailComponent.vue'
 
 export const routes = [
   // no route is matched. Can replace with 404 page
@@ -83,9 +62,9 @@ export const routes = [
     component: MyRouting,
     children: [
       {
-        path: 'lang/:id',
-        name: 'Languague',
-        component: LanguagueDetailComponent,
+        path: 'product/:id',
+        name: 'product',
+        component: ProductDetailComponent,
       },
     ],
   },
