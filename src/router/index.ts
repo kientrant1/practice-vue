@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
 
 import MyBindings from '../views/MyBindings.vue'
 import MyComposableFunction from '../views/MyComposableFunction.vue'
@@ -67,12 +68,31 @@ export const routes = [
         component: ProductDetailComponent,
       },
     ],
+    beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      // eslint-disable-next-line no-console
+      console.log('Router:Config ------- 2. beforeEnter', to, from)
+    },
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+})
+
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+  // eslint-disable-next-line no-console
+  console.log('Router:Global ------- 1. beforeEach', to, from)
+})
+
+router.beforeResolve((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+  // eslint-disable-next-line no-console
+  console.log('Router:Global ------- 3. beforeResolve', to, from)
+})
+
+router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+   // eslint-disable-next-line no-console
+  console.log('Router:Global ------- 4. afterEach', to, from)
 })
 
 export default router

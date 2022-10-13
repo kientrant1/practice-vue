@@ -1,31 +1,34 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { Ref } from 'vue'
 
 interface IParams {
-  url: string;
+  url: Ref<string>
 }
 
 interface IOutput<T> {
-  loading: Ref<boolean>;
-  data: Ref<T | null>;
-  error: Ref<string | null>;
+  loading: Ref<boolean>
+  data: Ref<T | undefined>
+  error: Ref<string | undefined>
 }
 
 const useFetchData = <T>({ url }: IParams): IOutput<T> => {
-  const loading = ref(true)
-  const data = ref(null)
-  const error = ref(null)
+  const loading = ref<boolean>(true)
+  const data = ref<T>()
+  const error = ref<string>()
 
-  fetch(url)
-    .then((res) => res.json())
-    .then((json) => {
+  const getData = async () => {
+    try {
+      const res = await fetch(url.value)
+      data.value = await res.json()
       loading.value = false
-      data.value = json
-    })
-    .catch((err) => {
+    } catch (error: any) {
+      error.value = 'Error! Could not reach the API. ' + (error as string)
       loading.value = false
-      error.value = err
-    })
+    }
+  }
+
+  getData()
+  watch(url, () => getData())
 
   return {
     loading,

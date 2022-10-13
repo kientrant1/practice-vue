@@ -1,11 +1,26 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+import {
+  RouterLink,
+  onBeforeRouteUpdate,
+  onBeforeRouteLeave,
+} from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
 import LoadingComponent from '../components/sfcs/LoadingComponent.vue'
 import useFetchData from '../components/composableFunctions/useFetchData'
 import type { IProduct } from '../types/IProduct'
 
-const url = 'https://fakestoreapi.com/products'
+const url = ref('https://fakestoreapi.com/products')
 const { loading, data, error } = useFetchData<IProduct[]>({ url })
+
+onBeforeRouteUpdate((to: RouteLocationNormalized, from: RouteLocationNormalized ) => {
+  // eslint-disable-next-line no-console
+  console.log('Router:Component ------- 5. onBeforeRouteUpdate', to, from)
+})
+onBeforeRouteLeave((to: any, from: any) => {
+  // eslint-disable-next-line no-console
+  console.log('Router:Component ------- 6. onBeforeRouteLeave', to, from)
+})
 </script>
 
 <template>
@@ -13,7 +28,7 @@ const { loading, data, error } = useFetchData<IProduct[]>({ url })
   <h4>Products</h4>
   <LoadingComponent v-if="loading" />
   <div v-else>
-    <div v-if="error" v-change-text-color="'red'">{{ error }}</div>
+    <div v-if="error"><span v-changeTextColor="'red'">{{ error }}</span></div>
     <ul v-else>
       <li v-for="item in data" :key="item.id">
         <RouterLink :to="{ name: 'product', params: { id: item.id } }">{{
