@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, reactive, provide, readonly } from 'vue'
 
-import HelloComponent from '../components/sfcs/HelloComponent.vue'
-import BlogPost from '../components/sfcs/BlogPost.vue'
-import type { IBlogPost } from '../components/sfcs/BlogPost.vue'
-import InjectionMessage from '../components/sfcs/InjectionMessage.vue'
-import TemplateRef from '../components/sfcs/TemplateRef.vue'
-import BuildInComponent from '../components/sfcs/BuildInComponent.vue'
+import HelloComponent from '@/components/sfcs/HelloComponent.vue'
+import BlogPost from '@/components/sfcs/BlogPost.vue'
+import type { IBlogPost } from '@/components/sfcs/BlogPost.vue'
+import InjectionMessage from '@/components/sfcs/InjectionMessage.vue'
+import TemplateRef from '@/components/sfcs/TemplateRef.vue'
+import BuildInComponent from '@/components/sfcs/BuildInComponent.vue'
 
 const toogleComp = ref<boolean>(true)
 const blogs = reactive<IBlogPost[]>([

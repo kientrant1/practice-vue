@@ -7,8 +7,8 @@ import {
 } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 
-import useFetchData from '../components/composableFunctions/useFetchData'
-import type { IProduct } from '../types/IProduct'
+import useFetchData from '@/components/composableFunctions/useFetchData'
+import type { IProduct } from '@/types/IProduct'
 import { log } from '@/utils/log'
 
 const url = ref('https://fakestoreapi.com/products')
