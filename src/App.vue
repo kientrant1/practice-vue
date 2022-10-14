@@ -1,21 +1,33 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterView, RouterLink, useRoute } from 'vue-router'
+import { storeToRefs } from 'pinia'
+
 import { routes } from './router'
 import LoadingComponent from '@/components/sfcs/LoadingComponent.vue'
 import { useLoadingStore } from '@/store/loadingStore'
+import { log } from '@/utils/log'
 
 const myRoutes = routes.filter((item) => item.name)
 const currentRouteName = computed(() => useRoute().name)
 
-const { loadingState } = useLoadingStore()
-const loading = computed(() => loadingState)
+const isLoading = ref<boolean>(false)
+const loadingStore = useLoadingStore()
+
+// Subscribing to the state
+// Method 1. Through $subscribe
+loadingStore.$subscribe((mutation, state) => {
+  log('mutation ', mutation, 'state ', state)
+  isLoading.value = state.loadingState
+})
+// Method 2. Mapping to storeToRefs to keep reactive connectivity
+const { loadingState } = storeToRefs(loadingStore)
 
 </script>
 
 <template>
   <div class="main-container">
-    <div v-if="loading" class="loading-container flex-center">
+    <div v-if="loadingState" class="loading-container flex-center">
       <LoadingComponent />
     </div>
     <h2 v-position-sticky:top="10" :style="{ background: '#fff' }">

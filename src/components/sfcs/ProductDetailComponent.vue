@@ -8,7 +8,8 @@ import type { IProduct } from '@/types/IProduct'
 import Router from '@/router'
 import { useProductStore } from '@/store/productStore'
 
-const { productState } = useProductStore()
+const { productState, updateProduct } = useProductStore()
+const { product } = productState
 
 const route = useRoute()
 // const id = ref<string>()
@@ -32,20 +33,35 @@ onBeforeRouteUpdate(
 const goBack = () => {
   Router.push({ name: 'Data Bindings' })
 }
+
+const updateProductInfo = () => {
+  // updateProduct(null)
+}
 </script>
 
 <template>
   <button @click="goBack">Home</button>
-  <div v-if="data" class="product-detail-container">
+  <fieldset v-if="data" class="product-detail-container">
+    <legend class="product-title">Data from fetching...</legend>
     <p class="product-title">{{ data.title }}</p>
-    <p>{{ data.description }}</p>
+    <p>{{ data.category }} - {{ data.description }}</p>
     <p><img class="product-image" :src="data.image" /></p>
-  </div>
+  </fieldset>
+  <fieldset v-if="product" class="product-detail-container">
+    <legend class="product-title">Data from Pinia (update to State directly)</legend>
+    <input v-model="product.title" type="text" />
+    <textarea :value="product.description" class="area-description" />
+    <p><img class="product-image" :src="product.image" /></p>
+  </fieldset>
 </template>
 
 <style scoped>
 .product-detail-container {
-  padding: 1rem;
+  width: 100%;
+  margin: 0;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid green;
 }
 
 .product-title {
@@ -55,5 +71,12 @@ const goBack = () => {
 .product-image {
   width: 200px;
   height: 200px;
+}
+
+.area-description {
+  display: block;
+  margin-top: 15px;
+  width: 500px;
+  height: 300px;
 }
 </style>

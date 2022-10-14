@@ -11,6 +11,8 @@ import MyDirectives from '../views/MyDirectives.vue'
 import MySFCs from '../views/MySFCs.vue'
 import MyRouting from '../views/MyRouting.vue'
 
+import { products } from '@/mocks/products'
+
 import { useProductStore } from '../store/productStore'
 
 // Lazy loading component
@@ -78,17 +80,14 @@ export const routes = [
           next: NavigationGuardNext
         ) => {
           log('Router:Config ------- 2. beforeEnter', to, from, next)
-          // can fetch data and set to global state
-          // Not apply to changes of params, hash, query
-          // Need passing Pinia instance directly
+          // 1. can fetch data and set to global state
+          // 2. Not apply to changes of params, hash, query
+
+          // 1. Need passing Pinia instance directly
           const { productState } = useProductStore()
-          productState.product = {
-            id: 1,
-            title: '111',
-            category: '',
-            description: 'sdfsdf',
-            image: 'sdfsd',
-          }
+          // 2. Allow updating State directly from Store
+          productState.product = products[0]
+          productState.products = products
           // Continue to go to active route
           next()
         },

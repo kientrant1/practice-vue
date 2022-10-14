@@ -18,7 +18,12 @@ const initialState: IProduct = {
 export const useProductStore = defineStore('productStore', () => {
   const productState = reactive<IProductState>({ product: initialState, products: [] })
 
+  const updateProduct = (product: IProduct) => {
+    productState.product = product
+  }
+
   return {
-    productState
+    productState,
+    updateProduct
   }
 })
