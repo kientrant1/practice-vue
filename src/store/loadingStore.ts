@@ -6,7 +6,6 @@ export const useLoadingStore = defineStore('loadingStore', () => {
 
   const setLoadingStatus = (loading: boolean) => {
     loadingState.value = loading
-    
   }
 
   return {

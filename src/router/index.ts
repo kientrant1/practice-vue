@@ -86,7 +86,7 @@ export const routes = [
           // 1. Need passing Pinia instance directly
           const { productState } = useProductStore()
           // 2. Allow updating State directly from Store
-          productState.product = products[0]
+          productState.product = { ...products[0] }
           productState.products = products
           // Continue to go to active route
           next()
@@ -115,7 +115,7 @@ router.beforeResolve(
 
 router.afterEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    log('Router:Global ------- 4. afterEach' + to + from)
+    log('Router:Global ------- 4. afterEach', to, from)
   }
 )
 

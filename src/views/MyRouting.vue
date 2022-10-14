@@ -7,7 +7,6 @@ import {
 } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 
-import LoadingComponent from '../components/sfcs/LoadingComponent.vue'
 import useFetchData from '../components/composableFunctions/useFetchData'
 import type { IProduct } from '../types/IProduct'
 import { log } from '@/utils/log'
@@ -29,7 +28,7 @@ onBeforeRouteLeave((to: any, from: any) => {
 <template>
   <GlobalHeader header="Nested Routes" sub-level />
   <h4>Products</h4>
-  <LoadingComponent v-if="loading" />
+  <div v-if="loading">...loading</div>
   <div v-else>
     <div v-if="error"><span v-changeTextColor="'red'">{{ error }}</span></div>
     <ul v-else>

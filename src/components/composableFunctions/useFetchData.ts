@@ -1,7 +1,8 @@
-import { ref, watch } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import type { Ref } from 'vue'
 
 import { useLoadingStore } from '@/store/loadingStore'
+import { warn } from '@/utils/log'
 
 interface IParams {
   url: Ref<string>
@@ -14,7 +15,8 @@ interface IOutput<T> {
 }
 
 const useFetchData = <T>({ url }: IParams): IOutput<T> => {
-  const { setLoadingStatus } = useLoadingStore()
+  const loadingStore = useLoadingStore()
+  const { setLoadingStatus } = loadingStore
 
   const loading = ref<boolean>(true)
   const data = ref<T>()
@@ -38,8 +40,31 @@ const useFetchData = <T>({ url }: IParams): IOutput<T> => {
     }
   }
 
+  const unsubscribe = loadingStore.$onAction(({ name, args, after, onError }) => {
+    const startTime = Date.now()
+    warn(`Store onAction: Start "${name}" with params [${args.join(', ')}].`)
+  
+    after((result) => {
+      warn(
+        `Store onAction: Finished "${name}" after ${
+          Date.now() - startTime
+        }ms.\nResult: ${result}.`
+      )
+    })
+  
+    onError((error) => {
+      warn(`Store onAction: Failed "${name}" after ${Date.now() - startTime}ms.\nError: ${error}.`)
+    })
+  })
+  
+
   getData()
   watch(url, () => getData())
+
+  onUnmounted(() => {
+    unsubscribe()
+    warn('Store onAction: unsubscribe loadingStore')
+  })
 
   return {
     loading,

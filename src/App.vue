@@ -22,14 +22,11 @@ loadingStore.$subscribe((mutation, state) => {
 })
 // Method 2. Mapping to storeToRefs to keep reactive connectivity
 const { loadingState } = storeToRefs(loadingStore)
-
 </script>
 
 <template>
   <div class="main-container">
-    <div v-if="loadingState" class="loading-container flex-center">
-      <LoadingComponent />
-    </div>
+    <LoadingComponent v-if="loadingState" is-loading-app />
     <h2 v-position-sticky:top="10" :style="{ background: '#fff' }">
       Practice Vue
     </h2>
@@ -49,16 +46,6 @@ const { loadingState } = storeToRefs(loadingStore)
 .main-container {
   min-height: 110vh;
   width: 100vw;
-}
-
-.loading-container {
-  width: 100%;
-  height: 100%;
-  background: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .menu {

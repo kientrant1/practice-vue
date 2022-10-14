@@ -47,10 +47,11 @@ const updateProductInfo = () => {
     <p>{{ data.category }} - {{ data.description }}</p>
     <p><img class="product-image" :src="data.image" /></p>
   </fieldset>
-  <fieldset v-if="product" class="product-detail-container">
+  <!-- Global State -->
+  <fieldset class="product-detail-container">
     <legend class="product-title">Data from Pinia (update to State directly)</legend>
     <input v-model="product.title" type="text" />
-    <textarea :value="product.description" class="area-description" />
+    <textarea v-model="product.description" class="area-description" />
     <p><img class="product-image" :src="product.image" /></p>
   </fieldset>
 </template>
