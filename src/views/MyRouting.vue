@@ -6,20 +6,20 @@ import {
   onBeforeRouteLeave,
 } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
+
 import LoadingComponent from '../components/sfcs/LoadingComponent.vue'
 import useFetchData from '../components/composableFunctions/useFetchData'
 import type { IProduct } from '../types/IProduct'
+import { log } from '@/utils/log'
 
 const url = ref('https://fakestoreapi.com/products')
 const { loading, data, error } = useFetchData<IProduct[]>({ url })
 
 onBeforeRouteUpdate((to: RouteLocationNormalized, from: RouteLocationNormalized ) => {
-  // eslint-disable-next-line no-console
-  console.log('Router:Component ------- 5. onBeforeRouteUpdate', to, from)
+  log('Router:Component ------- 5. onBeforeRouteUpdate', to, from)
 })
 onBeforeRouteLeave((to: any, from: any) => {
-  // eslint-disable-next-line no-console
-  console.log('Router:Component ------- 6. onBeforeRouteLeave', to, from)
+  log('Router:Component ------- 6. onBeforeRouteLeave', to, from)
   if (!confirm("Are you sure want to leave page?")) {
     return false
   }

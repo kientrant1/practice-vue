@@ -6,6 +6,9 @@ import type { RouteLocationNormalized } from 'vue-router'
 import useFetchData from '@/components/composableFunctions/useFetchData'
 import type { IProduct } from '@/types/IProduct'
 import Router from '@/router'
+import { useProductStore } from '@/store/productStore'
+
+const { productState } = useProductStore()
 
 const route = useRoute()
 // const id = ref<string>()

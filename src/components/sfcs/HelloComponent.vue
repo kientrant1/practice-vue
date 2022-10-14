@@ -2,6 +2,8 @@
 /* eslint-disable no-console */
 import { ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted,
   onErrorCaptured } from 'vue'
+
+import { logColor } from '@/utils/log'
 // withDefaults compiler macro https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
 interface IProps {
   hello: string
@@ -15,7 +17,7 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const logMessage = (message: string, color: string = 'black') => {
-  props.log && console.log("%c" + message, "color:" + color)
+  props.log && logColor(color, "%c" + message)
 }
 
 const simulateError = () => {

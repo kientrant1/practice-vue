@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
+import { log } from '@/utils/log'
 import MyBindings from '../views/MyBindings.vue'
 import MyComposableFunction from '../views/MyComposableFunction.vue'
 import MyEvents from '../views/MyEvents.vue'
@@ -9,6 +10,8 @@ import MyWatchers from '../views/MyWatchers.vue'
 import MyDirectives from '../views/MyDirectives.vue'
 import MySFCs from '../views/MySFCs.vue'
 import MyRouting from '../views/MyRouting.vue'
+
+import { useProductStore } from '../store/productStore'
 
 // Lazy loading component
 const ProductDetailComponent = () =>
@@ -71,10 +74,23 @@ export const routes = [
         component: ProductDetailComponent,
         beforeEnter: (
           to: RouteLocationNormalized,
-          from: RouteLocationNormalized
+          from: RouteLocationNormalized,
+          next: NavigationGuardNext
         ) => {
-          // eslint-disable-next-line no-console
-          console.log('Router:Config ------- 2. beforeEnter', to, from)
+          log('Router:Config ------- 2. beforeEnter', to, from, next)
+          // can fetch data and set to global state
+          // Not apply to changes of params, hash, query
+          // Need passing Pinia instance directly
+          const { productState } = useProductStore()
+          productState.product = {
+            id: 1,
+            title: '111',
+            category: '',
+            description: 'sdfsdf',
+            image: 'sdfsd',
+          }
+          // Continue to go to active route
+          next()
         },
       },
     ],
@@ -88,22 +104,19 @@ const router = createRouter({
 
 router.beforeEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    // eslint-disable-next-line no-console
-    console.log('Router:Global ------- 1. beforeEach', to, from)
+    log('Router:Global ------- 1. beforeEach', to, from)
   }
 )
 
 router.beforeResolve(
   (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    // eslint-disable-next-line no-console
-    console.log('Router:Global ------- 3. beforeResolve', to, from)
+    log('Router:Global ------- 3. beforeResolve', to, from)
   }
 )
 
 router.afterEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    // eslint-disable-next-line no-console
-    console.log('Router:Global ------- 4. afterEach', to, from)
+    log('Router:Global ------- 4. afterEach' + to + from)
   }
 )
 

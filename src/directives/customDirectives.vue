@@ -1,6 +1,7 @@
 <script lang="ts">
-/* eslint-disable no-console */
 import type { VNode, DirectiveBinding } from 'vue'
+
+import { log } from '@/utils/log'
 
 interface IFullName {
   firstName: string;
@@ -12,34 +13,34 @@ const vAutoScrollToElement = {
     if (value) {
       el.scrollIntoView({ behavior: 'smooth' })
     }
-    console.log('vAutoScrollToElement mounted', vnode)
+    log('vAutoScrollToElement mounted' + vnode)
   },
 };
 
 const vChangeTextColor = {
   created: () => {
-    console.log('vChangeTextColor created')
+    log('vChangeTextColor created')
   },
   beforeMount: () => {
-    console.log('vChangeTextColor beforeMount')
+    log('vChangeTextColor beforeMount')
   },
   mounted: (el: HTMLElement, bindings: DirectiveBinding) => {
     el.style.color = bindings.value
-    console.log('vChangeTextColor mounted')
+    log('vChangeTextColor mounted')
   },
   beforeUpdate: () => {
-    console.log('vChangeTextColor beforeUpdated')
+    log('vChangeTextColor beforeUpdated')
   },
   updated: (el: HTMLElement, bindings: DirectiveBinding) => {
     // update color
     el.style.color = bindings.value
-    console.log('vChangeTextColor updated')
+    log('vChangeTextColor updated')
   },
   beforeUnmount: () => {
-    console.log('vChangeTextColor beforeUnmount')
+    log('vChangeTextColor beforeUnmount')
   },
   unmounted: () => {
-    console.log('vChangeTextColor unmounted')
+    log('vChangeTextColor unmounted')
   },
 };
 

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect, computed } from 'vue'
+
+import { log } from '@/utils/log'
+
 const count = ref<number>(0)
 
 const doubleCount = computed(() => count.value *2)
@@ -16,8 +19,7 @@ const unWatch = watch(count, (newValue) => {
 })
 
 const unWatchEffect = watchEffect(() => {
-  // eslint-disable-next-line no-console
-  console.log(`watchEffect - count: ${count.value}`)
+  log(`watchEffect - count: ${count.value}`)
 });
 
 const unAllWatch = () => {

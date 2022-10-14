@@ -1,7 +1,9 @@
 <script setup lang="ts">
-/* eslint-disable no-console */
 import { ref, reactive, onMounted } from 'vue'
+
 import ExposeComponent from '../sfcs/ExposeComponent.vue'
+import { log } from '@/utils/log'
+
 const list = reactive<string[]>(['item 1', 'item 2', 'item 3'])
 const itemRefs = ref<HTMLElement[] | null>([])
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -11,8 +13,8 @@ const toogleMessage = () => {
   componentRef.value?.toogleMessage()
 }
 onMounted(() => {
-  console.log('Input Ref value: ', inputRef.value?.value)
-  console.log('List Ref value: ', itemRefs.value?.map(i => i.textContent))
+  log('Input Ref value: ' + inputRef.value?.value)
+  log('List Ref value: ' + itemRefs.value?.map(i => i.textContent))
 })
 </script>
 
