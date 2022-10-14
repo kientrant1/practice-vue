@@ -34,8 +34,12 @@ const goBack = () => {
   Router.push({ name: 'Data Bindings' })
 }
 
-const updateProductInfo = () => {
-  // updateProduct(null)
+const updateProductInfo = (event: Event, key: string) => {
+  const target = event.target as HTMLInputElement
+  updateProduct({
+    ...product,
+    [key]: target.value
+  })
 }
 </script>
 
@@ -50,7 +54,7 @@ const updateProductInfo = () => {
   <!-- Global State -->
   <fieldset class="product-detail-container">
     <legend class="product-title">Data from Pinia (update to State directly)</legend>
-    <input v-model="product.title" type="text" />
+    <input :value="product.title" @input="updateProductInfo($event, 'title')" type="text" />
     <textarea v-model="product.description" class="area-description" />
     <p><img class="product-image" :src="product.image" /></p>
   </fieldset>
