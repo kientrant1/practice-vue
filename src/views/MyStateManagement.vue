@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import CounterComponentWithPinia from '@/components/sfcs/CounterComponentWithPinia.vue'
 import { useProductStore } from '@/store/productStore'
-import { useCounterStore } from '@/store/counterStore'
 
 const { product, updateProduct } = useProductStore()
-const { counter, counterRef } = useCounterStore()
 
 const updateProductInfo = (event: Event, key: string) => {
   const target = event.target as HTMLInputElement

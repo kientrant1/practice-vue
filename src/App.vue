@@ -11,14 +11,14 @@ import { log } from '@/utils/log'
 const myRoutes = routes.filter((item) => item.name)
 const currentRouteName = computed(() => useRoute().name)
 
-const isLoading = ref<boolean>(false)
+// const isLoading = ref<boolean>(false)
 const loadingStore = useLoadingStore()
 
 // Subscribing to the state
 // Method 1. Through $subscribe
 loadingStore.$subscribe((mutation, state) => {
   log('mutation ', mutation, 'state ', state)
-  isLoading.value = state.loadingState
+  // isLoading.value = state.loadingState
 })
 // Method 2. Mapping to storeToRefs to keep reactive connectivity
 const { loadingState } = storeToRefs(loadingStore)

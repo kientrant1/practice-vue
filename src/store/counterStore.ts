@@ -1,14 +1,7 @@
 import { reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
-
 interface ICounter {
   count: number;
-}
-
-interface IDeepCounter {
-  countObj: {
-    value: number;
-  }
 }
 
 const initialState: ICounter = {
