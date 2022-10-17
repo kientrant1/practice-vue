@@ -18,12 +18,10 @@ const initialState: ICounter = {
 export const useCounterStore = defineStore('counterStore', () => {
   // state is object data
   const counter = reactive<ICounter>(initialState)
-  const deepCounter = reactive<IDeepCounter>({ countObj: { value: 0 } })
-  const counterRef = ref<ICounter>({...initialState})
+  const counterRef = ref<number>(0)
 
   return {
     counter,
-    deepCounter,
     counterRef
   }
 })

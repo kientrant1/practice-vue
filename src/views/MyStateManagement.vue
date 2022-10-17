@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import CounterComponentWithPinia from '@/components/sfcs/CounterComponentWithPinia.vue'
 import { useProductStore } from '@/store/productStore'
 import { useCounterStore } from '@/store/counterStore'
 
 const { product, updateProduct } = useProductStore()
-const { counter, counterRef, deepCounter } = useCounterStore()
-const { countObj } = deepCounter
+const { counter, counterRef } = useCounterStore()
 
 const updateProductInfo = (event: Event, key: string) => {
   const target = event.target as HTMLInputElement
@@ -18,14 +18,8 @@ const updateProductInfo = (event: Event, key: string) => {
 
 <template>
   <GlobalHeader header="Counter" />
-  Counter (reactive): {{ counter.count }} <br/>
-  <input v-model="counter.count" type="text" /> <br/>
+  <CounterComponentWithPinia />
 
-  Deep Counter (reactive): {{ countObj.value }} <br/>
-  <input v-model="countObj.value" type="text" /> <br/>
-
-  Counter (ref): {{ counterRef.count }} <br/>
-  <input v-model="counterRef.count" type="text" />
   <GlobalHeader header="Product Info" />
   <!-- Global State -->
   <div class="product-detail-container">
