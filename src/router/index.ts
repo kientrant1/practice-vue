@@ -10,6 +10,7 @@ import MyWatchers from '../views/MyWatchers.vue'
 import MyDirectives from '../views/MyDirectives.vue'
 import MySFCs from '../views/MySFCs.vue'
 import MyRouting from '../views/MyRouting.vue'
+import MyStateManagement from '../views/MyStateManagement.vue'
 
 import { products } from '@/mocks/products'
 
@@ -83,17 +84,31 @@ export const routes = [
           // 1. can fetch data and set to global state
           // 2. Not apply to changes of params, hash, query
 
-          // 1. Need passing Pinia instance directly
-          const { productState } = useProductStore()
-          // 2. Allow updating State directly from Store
-          productState.product = { ...products[0] }
-          productState.products = products
           // Continue to go to active route
           next()
         },
       },
     ],
   },
+  {
+    path: '/myStateManagment',
+    name: 'State Management',
+    component: MyStateManagement,
+    beforeEnter: (
+      to: RouteLocationNormalized,
+      from: RouteLocationNormalized,
+      next: NavigationGuardNext
+    ) => {
+      // 1. Need passing Pinia instance directly
+      const { updateProduct, updateProducts } = useProductStore()
+      // const store = useProductStore()
+      // 2. Allow updating State directly from Store
+      // product.id = products[0].id
+      updateProduct({ ...products[0] })
+      updateProducts(products)
+      next()
+    },
+  }
 ]
 
 const router = createRouter({

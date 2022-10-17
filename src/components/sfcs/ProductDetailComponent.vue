@@ -6,10 +6,6 @@ import type { RouteLocationNormalized } from 'vue-router'
 import useFetchData from '@/components/composableFunctions/useFetchData'
 import type { IProduct } from '@/types/IProduct'
 import Router from '@/router'
-import { useProductStore } from '@/store/productStore'
-
-const { productState, updateProduct } = useProductStore()
-const { product } = productState
 
 const route = useRoute()
 // const id = ref<string>()
@@ -33,14 +29,6 @@ onBeforeRouteUpdate(
 const goBack = () => {
   Router.push({ name: 'Data Bindings' })
 }
-
-const updateProductInfo = (event: Event, key: string) => {
-  const target = event.target as HTMLInputElement
-  updateProduct({
-    ...product,
-    [key]: target.value
-  })
-}
 </script>
 
 <template>
@@ -50,13 +38,6 @@ const updateProductInfo = (event: Event, key: string) => {
     <p class="product-title">{{ data.title }}</p>
     <p>{{ data.category }} - {{ data.description }}</p>
     <p><img class="product-image" :src="data.image" /></p>
-  </fieldset>
-  <!-- Global State -->
-  <fieldset class="product-detail-container">
-    <legend class="product-title">Data from Pinia (update to State directly)</legend>
-    <input :value="product.title" @input="updateProductInfo($event, 'title')" type="text" />
-    <textarea v-model="product.description" class="area-description" />
-    <p><img class="product-image" :src="product.image" /></p>
   </fieldset>
 </template>
 
@@ -76,12 +57,5 @@ const updateProductInfo = (event: Event, key: string) => {
 .product-image {
   width: 200px;
   height: 200px;
-}
-
-.area-description {
-  display: block;
-  margin-top: 15px;
-  width: 500px;
-  height: 300px;
 }
 </style>

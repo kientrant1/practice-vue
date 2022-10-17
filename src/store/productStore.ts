@@ -1,11 +1,6 @@
-import { reactive } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { IProduct } from '@/types/IProduct'
-
-interface IProductState {
-  product: IProduct;
-  products: IProduct[];
-}
 
 const initialState: IProduct = {
   id: 0,
@@ -16,14 +11,21 @@ const initialState: IProduct = {
 } 
 
 export const useProductStore = defineStore('productStore', () => {
-  const productState = reactive<IProductState>({ product: initialState, products: [] })
+  const product = ref<IProduct>(initialState)
+  const products = ref<IProduct[]>([])
 
-  const updateProduct = (product: IProduct) => {
-    productState.product = product
+  const updateProduct = (newProduct: IProduct) => {
+    product.value = newProduct;
+  }
+
+  const updateProducts = (newProducts: IProduct[]) => {
+    products.value = newProducts;
   }
 
   return {
-    productState,
-    updateProduct
+    product,
+    products,
+    updateProduct,
+    updateProducts
   }
 })
