@@ -43,14 +43,14 @@ provide('injectionMessage', {
   <div>
     <h3>Emit event with v-model: {{vModelValue}}</h3>
     <EmitVModel v-model="vModelValue" />
-    
+
     <BlogPost
       :style="{ fontSize: `${fontSize}rem` }"
       :blogs="blogs"
       @enlarge-text="enlargeTextHandle"
     >
       <template #default="slotProps"
-        ><span :class="'scoped-slot-header'">{{
+        ><span class="scoped-slot-header">{{
           slotProps.text
         }}</span></template
       >

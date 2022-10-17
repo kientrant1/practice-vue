@@ -23,7 +23,7 @@ const emit = defineEmits<IEmits>()
 <template>
   <div class="blog-post">
     <h3><slot name="header" /><i><u><slot name="header-note" /></u></i></h3>
-    <slot name="default" :text="'This is scoped slot'">No blog post</slot>
+    <slot name="default" :text="'This is scoped slot text'">No blog post</slot>
 
     <h4 v-for="item in props.blogs" :key="item.id">{{ item.title }}</h4>
     <button v-if="blogs" @click="emit('enlarge-text')">Enlarge text</button>
