@@ -4,6 +4,7 @@ import { ref, reactive, provide, readonly } from 'vue'
 import HelloComponent from '@/components/sfcs/HelloComponent.vue'
 import BlogPost from '@/components/sfcs/BlogPost.vue'
 import type { IBlogPost } from '@/components/sfcs/BlogPost.vue'
+import EmitVModel from '@/components/sfcs/EmitVModel.vue'
 import InjectionMessage from '@/components/sfcs/InjectionMessage.vue'
 import TemplateRef from '@/components/sfcs/TemplateRef.vue'
 import BuildInComponent from '@/components/sfcs/BuildInComponent.vue'
@@ -14,6 +15,8 @@ const blogs = reactive<IBlogPost[]>([
   { id: 2, title: 'Blogging with Vue' },
   { id: 3, title: 'Why Vue is so fun' },
 ])
+
+const vModelValue = ref<string>('')
 const fontSize = ref<number>(1)
 
 const enlargeTextHandle = (size?: number) => {
@@ -36,7 +39,11 @@ provide('injectionMessage', {
     Component
     <HelloComponent v-if="toogleComp" hello="Hello there, " :log="true" />
   </div>
+  <h3>Emit event</h3>
   <div>
+    <h3>Emit event with v-model: {{vModelValue}}</h3>
+    <EmitVModel v-model="vModelValue" />
+    
     <BlogPost
       :style="{ fontSize: `${fontSize}rem` }"
       :blogs="blogs"
@@ -50,11 +57,11 @@ provide('injectionMessage', {
       <template #header>My Blog post</template>
       <template #header-note> (Emit event, Multi slot)</template>
     </BlogPost>
-
     <BlogPost v-slot="slotProps">
       <h3 :class="'scoped-slot-header'">{{ slotProps.text }}</h3>
     </BlogPost>
   </div>
+
   <h3>Component communication</h3>
   <div>
     <h3>Injection Message</h3>
