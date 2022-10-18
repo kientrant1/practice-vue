@@ -17,16 +17,24 @@ export const useCounterStore = defineStore('counterStore', () => {
   const counterRef = ref<number>(0)
   // computed
   const doubleCounterRef = computed<number>(() => counterRef.value*2)
-  // methods
+  // methods: sync and async
   const incrementCounterRef = () => {
     counterRef.value++
+  }
+  const incrementCounterDelayRef = async () => {
+    new Promise<number>((resolve) => {
+      setTimeout(() => {
+        resolve(counterRef.value++)
+      }, 5000)
+    })
   }
 
   return {
     counter,
     counterRef,
     doubleCounterRef,
-    incrementCounterRef
+    incrementCounterRef,
+    incrementCounterDelayRef
   }
 })
 
@@ -44,10 +52,17 @@ export const useCounterOptionalStore = defineStore('counterOptionalStore', {
   getters: {
     doubleCountOptional: (state): number => state.counterOptional * 2,
   },
-  // methods
+  // methods: sync and async
   actions: {
     incrementCounterOptional() {
       this.counterOptional++
     },
+    incrementCounterDelayOptional() {
+      new Promise<number>((resolve) => {
+        setTimeout(() => {
+          resolve(this.counterOptional++)
+        }, 3000)
+      })
+    }
   },
 })

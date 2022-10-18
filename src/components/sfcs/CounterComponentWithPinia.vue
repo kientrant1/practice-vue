@@ -4,11 +4,11 @@ import { useCounterStore, useCounterOptionalStore } from '@/store/counterStore'
 const counterStore = useCounterStore()
 const counterOptionalStore = useCounterOptionalStore()
 
-const { counter } = counterStore
+const { counter, incrementCounterDelayRef } = counterStore
 const { counterRef, doubleCounterRef } = storeToRefs(counterStore)
 
 const { counterOptional, nameOptional, doubleCountOptional } = storeToRefs(counterOptionalStore)
-const { incrementCounterOptional } = counterOptionalStore
+const { incrementCounterOptional, incrementCounterDelayOptional } = counterOptionalStore
 
 
 
@@ -22,6 +22,7 @@ const increaseCounterRefHandler = () => {
   <div><span class="title">count with primitive value:</span> {{ counterRef }}</div>
   <div><span class="title">count with primitive value:</span> {{ doubleCounterRef }}</div>
   <button @click="increaseCounterRefHandler">Increase Counter</button>
+  <button @click="incrementCounterDelayRef">Increase Counter with delay 3s (async)</button>
   <br/><br/>
   <h4>Composition API - Without wrapping with storeToRefs</h4>
   <div><span class="title">count with non-primitive value:</span> {{ counter.count }}</div>
@@ -35,7 +36,8 @@ const increaseCounterRefHandler = () => {
   </div>
   Change name directs in State (CAN via storeToRefs) <input v-model="nameOptional" type="text"/> <br/>
   Change double count getter directs (CAN NOT) <input v-model="doubleCountOptional" placeholder="Double count" type="number"/> <br/>
-  Increase number in method (CAN) <button @click="incrementCounterOptional">Increase Counter</button>
+  <button @click="incrementCounterOptional">Increase Counter (sync)</button>
+  <button @click="incrementCounterDelayOptional">Increase Counter with delay 3s (async)</button>
 
 </template>
 
