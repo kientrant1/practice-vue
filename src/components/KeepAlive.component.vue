@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
 import type { Component } from 'vue'
-import CounterComponent from './CounterComponent.vue'
-import HelloComponent from './HelloComponent.vue'
+import CounterNormalComponent from './CounterNormal.component.vue'
+import HelloAppComponent from './HelloApp.component.vue'
 
 const currentName = ref<string>()
 const currentComponent = shallowRef<Component>()
@@ -15,14 +15,14 @@ const currentComponent = shallowRef<Component>()
     <label><input v-model="currentName" type="radio" value="B" />B</label>
     <KeepAlive>
       <component
-        :is="CounterComponent"
+        :is="CounterNormalComponent"
         v-if="currentName === 'A'"
         v-bind="{ name: 'A' }"
       />
     </KeepAlive>
     <KeepAlive>
       <component
-        :is="CounterComponent"
+        :is="CounterNormalComponent"
         v-if="currentName === 'B'"
         v-bind="{ name: 'B' }"
       />
@@ -32,15 +32,15 @@ const currentComponent = shallowRef<Component>()
       ><input
         v-model="currentComponent"
         type="radio"
-        :value="CounterComponent"
+        :value="CounterNormalComponent"
       />CounterComponent</label
     >
     <label
       ><input
         v-model="currentComponent"
         type="radio"
-        :value="HelloComponent"
-      />HelloComponent</label
+        :value="HelloAppComponent"
+      />HelloAppComponent</label
     >
     <KeepAlive>
       <component :is="currentComponent" />

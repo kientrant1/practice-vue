@@ -3,7 +3,7 @@ import {
   positionStickyFunc,
   fullName,
 } from '@/directives/customDirectives.vue'
-import GlobalHeaderComponent from '@/components/GlobalHeaderComponent.vue'
+import GlobalHeaderComponent from '@/components/GlobalHeader.component.vue'
 import useGlobalState from '@/composableFunctions/useGlobalState'
 
 const { state } = useGlobalState()

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CounterComponentWithPinia from '@/components/CounterComponentWithPinia.vue'
+import CounterComponentWithPinia from '@/components/CounterPinia.component.vue'
 import { useProductStore } from '@/store/productStore'
 
 const { product, updateProduct } = useProductStore()

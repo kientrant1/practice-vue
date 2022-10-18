@@ -19,18 +19,18 @@ const increaseCounterRefHandler = () => {
 
 <template>
   <h4>Composition API - Wrapped with storeToRefs to keep reactive state</h4>
-  <div><span class="title">count with primitive value:</span> {{ counterRef }}</div>
-  <div><span class="title">count with primitive value:</span> {{ doubleCounterRef }}</div>
+  <div><span class="title">Count with primitive value:</span> {{ counterRef }}</div>
+  <div><span class="title">Double count with primitive value:</span> {{ doubleCounterRef }}</div>
   <button @click="increaseCounterRefHandler">Increase Counter</button>
   <button @click="incrementCounterDelayRef">Increase Counter with delay 3s (async)</button>
   <br/><br/>
   <h4>Composition API - Without wrapping with storeToRefs</h4>
-  <div><span class="title">count with non-primitive value:</span> {{ counter.count }}</div>
+  <div><span class="title">Count with non-primitive value:</span> {{ counter.count }}</div>
   <button @click="counter.count++">Increase Counter</button>
   <br/><br/>
   <h4>Optional API</h4>
   <div>
-    <span class="title">count:</span> {{ counterOptional }} <br/>
+    <span class="title">Count:</span> {{ counterOptional }} <br/>
     <span class="title">Double count:</span> {{ doubleCountOptional }} <br/>
     <span class="title">Count name:</span> {{ nameOptional }} <br/>
   </div>

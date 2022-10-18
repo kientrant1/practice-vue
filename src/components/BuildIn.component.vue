@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { defineAsyncComponent, ref } from 'vue'
 import type { Component } from 'vue'
-import LoadingComponent from './LoadingComponent.vue'
-import KeepAliveComponent from './KeepAliveComponent.vue'
-import ModalComponent from './ModalComponent.vue'
+import LoadingComponent from './LoadingApp.component.vue'
+import KeepAliveComponent from './KeepAlive.component.vue'
+import ModalComponent from './ModalApp.component.vue'
 
 const isShownModal = ref<boolean>(false)
 const isAppendToBody = ref<boolean>(true)
 
 const fetchComponent = new Promise<Component>((resolve) => {
   setTimeout(() => {
-    resolve(import('./ExposeComponent.vue'))
+    resolve(import('./ExposeCp.component.vue'))
     // resolve(LoadingComponent)
   }, 5000)
 })
