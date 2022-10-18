@@ -18,7 +18,7 @@ import { useProductStore } from '../store/productStore'
 
 // Lazy loading component
 const ProductDetailComponent = () =>
-  import('../components/sfcs/ProductDetailComponent.vue')
+  import('../components/ProductDetailComponent.vue')
 
 export const routes = [
   // no route is matched. Can replace with 404 page

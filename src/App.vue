@@ -4,7 +4,7 @@ import { RouterView, RouterLink, useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
 import { routes } from '@/router'
-import LoadingComponent from '@/components/sfcs/LoadingComponent.vue'
+import LoadingComponent from '@/components/LoadingComponent.vue'
 import { useLoadingStore } from '@/store/loadingStore'
 import { log } from '@/utils/log'
 
