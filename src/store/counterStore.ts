@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 interface ICounter {
   count: number;
@@ -8,12 +8,16 @@ const initialState: ICounter = {
   count: 0,
 } 
 
-// Composition API
+/**
+ * Composition API
+ */
 export const useCounterStore = defineStore('counterStore', () => {
-  // state is object data
+  // ref - reactive state
   const counter = reactive<ICounter>(initialState)
   const counterRef = ref<number>(0)
-
+  // computed
+  const doubleCounterRef = computed<number>(() => counterRef.value*2)
+  // methods
   const incrementCounterRef = () => {
     counterRef.value++
   }
@@ -21,16 +25,26 @@ export const useCounterStore = defineStore('counterStore', () => {
   return {
     counter,
     counterRef,
+    doubleCounterRef,
     incrementCounterRef
   }
 })
 
-// Optional API
+/**
+ * Optional API
+ */
+ interface State {
+  counterOptional: number;
+  nameOptional: string;
+}
 export const useCounterOptionalStore = defineStore('counterOptionalStore', {
-  state: () => ({ counterOptional: 0, nameOptional: 'Eduardo' }),
+  // ref - reactive state
+  state: (): State => ({ counterOptional: 0, nameOptional: 'Eduardo' }),
+  // computed
   getters: {
-    doubleCountOptional: (state) => state.counterOptional * 2,
+    doubleCountOptional: (state): number => state.counterOptional * 2,
   },
+  // methods
   actions: {
     incrementCounterOptional() {
       this.counterOptional++
