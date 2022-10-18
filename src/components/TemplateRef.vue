@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
 
-import ExposeComponent from '../sfcs/ExposeComponent.vue'
+import ExposeComponent from './ExposeComponent.vue'
 import { log } from '@/utils/log'
 
 const list = reactive<string[]>(['item 1', 'item 2', 'item 3'])

@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
 
-import useFetchData from '@/components/composableFunctions/useFetchData'
+import useFetchData from '@/composableFunctions/useFetchData'
 import type { IProduct } from '@/types/IProduct'
 import Router from '@/router'
 

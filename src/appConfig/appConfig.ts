@@ -2,9 +2,9 @@ import type { App } from 'vue'
 import {
   positionStickyFunc,
   fullName,
-} from '../directives/customDirectives.vue'
-import GlobalHeaderComponent from '../components/sfcs/GlobalHeaderComponent.vue'
-import useGlobalState from '../components/composableFunctions/useGlobalState'
+} from '@/directives/customDirectives.vue'
+import GlobalHeaderComponent from '@/components/GlobalHeaderComponent.vue'
+import useGlobalState from '@/composableFunctions/useGlobalState'
 
 const { state } = useGlobalState()
 
