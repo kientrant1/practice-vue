@@ -1,11 +1,26 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 
-const onSubmit = (values: any) => {
-  console.log('Submitting', values)
+interface IForm {
+  email: string
 }
 
-const validateEmail = (value: any) => {
+const submitValues = ref<IForm>()
+
+const onSubmit = (values: any) => {
+  submitValues.value = values
+}
+
+const mockApiRequest = (value: string) =>
+  // check used email
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(value === 'test@example.com')
+    }, 5000)
+  })
+
+const validateEmail = async (value: any) => {
   // if the field is empty
   if (!value) {
     return 'This field is required'
@@ -15,16 +30,33 @@ const validateEmail = (value: any) => {
   if (!regex.test(value)) {
     return 'This field must be a valid email'
   }
+  // if match with email
+  const matchedEmail = await mockApiRequest(value)
   // All is good
-  return true
+  return matchedEmail ? 'This email is already taken' : true
 }
 </script>
 <template>
-  <Form @submit="onSubmit">
-    <Field name="email" type="email" :rules="validateEmail" />
-    <ErrorMessage name="email" />
-    <button>Sign up for newsletter</button>
+  <div class="result">result: {{ submitValues }}</div>
+  <Form v-slot="{ isSubmitting }" @submit="onSubmit">
+    <div>
+      <Field name="email" type="email" :rules="validateEmail" />
+    </div>
+    <div>
+      <ErrorMessage class="field-error" name="email" />
+    </div>
+    <button :disabled="isSubmitting">Sign up for newsletter</button>
   </Form>
 </template>
 
-<style scope></style>
+<style scope>
+.field-error {
+  padding: 5px 0;
+  display: block;
+  color: red;
+}
+
+.result {
+  background: yellow;
+}
+</style>
