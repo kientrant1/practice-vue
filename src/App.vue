@@ -38,7 +38,9 @@ const { loadingState } = storeToRefs(loadingStore)
       </li>
     </ul>
     <GlobalHeader :header="currentRouteName" />
-    <RouterView />
+    <div class="inner-container">
+      <RouterView />
+    </div>
   </div>
 </template>
 

@@ -2,15 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 import { log } from '@/utils/log'
-import MyBindings from '../views/MyBindings.vue'
-import MyComposableFunction from '../views/MyComposableFunction.vue'
-import MyEvents from '../views/MyEvents.vue'
-import MyReactiveState from '../views/MyReactiveState.vue'
-import MyWatchers from '../views/MyWatchers.vue'
-import MyDirectives from '../views/MyDirectives.vue'
-import MySFCs from '../views/MySFCs.vue'
-import MyRouting from '../views/MyRouting.vue'
-import MyStateManagement from '../views/MyStateManagement.vue'
+import MyBindings from '@/views/MyBindings.vue'
+import MyComposableFunction from '@/views/MyComposableFunction.vue'
+import MyEvents from '@/views/MyEvents.vue'
+import MyReactiveState from '@/views/MyReactiveState.vue'
+import MyWatchers from '@/views/MyWatchers.vue'
+import MyDirectives from '@/views/MyDirectives.vue'
+import MySFCs from '@/views/MySFCs.vue'
+import MyRouting from '@/views/MyRouting.vue'
+import MyStateManagement from '@/views/MyStateManagement.vue'
+import MyForm from '@/views/MyForm.vue'
 
 import { products } from '@/mocks/products'
 
@@ -108,7 +109,12 @@ export const routes = [
       updateProducts(products)
       next()
     },
-  }
+  },
+  {
+    path: '/myForm',
+    name: 'Form Vee-Validate',
+    component: MyForm,
+  },
 ]
 
 const router = createRouter({

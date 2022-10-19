@@ -7,7 +7,8 @@ import router from '@/router'
 const pinia = createPinia()
 
 const myPiniaPlugin = ({ store }: PiniaPluginContext) => {
- store.router = markRaw(router)
+  // Marks an object so that it will never be converted to a proxy. Returns the object itself
+  store.router = markRaw(router)
 }
 
 pinia.use(myPiniaPlugin)
