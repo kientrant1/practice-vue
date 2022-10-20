@@ -87,10 +87,6 @@ input {
 }
 
 .help-message {
-  position: absolute;
-  bottom: calc(-1.5 * 1em);
-  left: 0;
-  margin: 0;
   font-size: 14px;
 }
 .has-error .help-message {

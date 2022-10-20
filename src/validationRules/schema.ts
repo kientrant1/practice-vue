@@ -25,5 +25,5 @@ export const registrationSchema = yupObject({
     .required()
     .oneOf([yupRef('pwd')], 'Passwords do not match'),
   newsletter: yupArray().min(1, 'Choose at least one channel'),
-  amount: yupNumber().required().max(1000).min(100),
+  amount: yupNumber().max(200).min(1),
 })

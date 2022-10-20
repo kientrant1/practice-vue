@@ -13,6 +13,8 @@ import CurrencyInput from '@/components/controls/CurrencyInput.vue'
 interface IForm {
   firstName: string
   lastName: string
+  pwd: string
+  newsletter?: string[]
   amount: number
 }
 
@@ -21,6 +23,7 @@ const submitValues = ref<IForm>()
 const initialFormValues: IForm = {
   firstName: '',
   lastName: '',
+  pwd: '',
   amount: 0
 }
 
