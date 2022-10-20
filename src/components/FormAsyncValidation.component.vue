@@ -5,8 +5,6 @@ import { useForm, useField, ErrorMessage } from 'vee-validate'
 import type { InvalidSubmissionContext } from 'vee-validate'
 import { string as yupString, object as yupObject, boolean as yupBoolean } from 'yup'
 
-import { isMatchEmailPattern } from '@/validationRules/emailRules'
-
 interface ISubscriptionForm {
   // nested name
   subscriptionForm: {
@@ -38,21 +36,6 @@ const definedValidationSchema = {
   }
 }
 
-/**
- * custom validation on fields
- * Required: Turn off validationSchema
- */
-const validateEmailField = (value: string) => {
-  if (!value) {
-    return 'this field is required';
-  }
-
-  if (!isMatchEmailPattern(value)) {
-    return 'This field must be a valid email'
-  }
-  return true
-}
-
 const initialFormValues: ISubscriptionForm = {
   subscriptionForm: {
     email: 'default@test.com',
@@ -68,7 +51,7 @@ const { handleSubmit, isSubmitting, resetForm, errors } =
     validationSchema: validationSchema,
   })
 
-const { value: emailValue } = useField<string>('subscriptionForm.email', validateEmailField)
+const { value: emailValue } = useField<string>('subscriptionForm.email')
 const { value: noteValue } = useField<string>('subscriptionForm.note')
 const { value: internetChannels } = useField<boolean>(
   'subscriptionForm.channels[0]'
