@@ -39,3 +39,11 @@ export const formStepSchema = [
       .oneOf(['coffee', 'tea', 'soda'], 'Choose a drink'),
   }),
 ]
+
+export const repeatedFieldsSchema = yupObject().shape({
+  links: yupArray().of(
+    yupObject().shape({
+      url: yupString().required('Please input URL'),
+    })
+  ),
+})

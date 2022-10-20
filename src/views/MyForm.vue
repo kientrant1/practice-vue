@@ -3,6 +3,7 @@ import FormCp from '@/components/FormCp.component.vue'
 import FormComposition from '@/components/FormComposition.component.vue'
 import FormCustomFields from '@/components/FormCustomFields.component.vue'
 import FormWizard from '@/components/FormWizard.component.vue'
+import FormRepeatedFields from '@/components/FormRepeatedFields.component.vue'
 </script>
 
 <template>
@@ -14,4 +15,6 @@ import FormWizard from '@/components/FormWizard.component.vue'
   <FormCustomFields />
   <GlobalHeader header="Form Wizard" />
   <FormWizard />
+  <GlobalHeader header="Form Repeated Fields" />
+  <FormRepeatedFields />
 </template>
