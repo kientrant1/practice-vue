@@ -40,10 +40,11 @@ export const formStepSchema = [
   }),
 ]
 
+const regexURL = /^(?=.{4,2048}$)((http|https):\/\/)?(www.)?(?!.*(http|https|www.))[a-zA-Z0-9_-]{1,63}(\.[a-zA-Z]{1,63}){1,5}(\/){1}.([\w\?[a-zA-Z-_%\/@?]+)*([^\/\w\?[a-zA-Z0-9_-]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/
 export const repeatedFieldsSchema = yupObject().shape({
   links: yupArray().of(
     yupObject().shape({
-      url: yupString().required('Please input URL'),
+      url: yupString().required('Please input URL').matches(regexURL, 'Invalid URL'),
     })
   ),
 })

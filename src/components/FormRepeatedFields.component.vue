@@ -24,11 +24,11 @@ const initialValues: IForm = {
 
 const submitValues = ref<IForm>()
 
-const { handleSubmit, isSubmitting } = useForm({
+const { handleSubmit, isSubmitting } = useForm<IForm>({
   initialValues,
   validationSchema: repeatedFieldsSchema
 });
-const { fields, push, remove } = useFieldArray('links')
+const { fields, push, remove } = useFieldArray<ILink>('links')
 
 const onInvalidSubmit = ({
   values,
@@ -45,7 +45,7 @@ const onSubmit = handleSubmit((values: IForm) => {
 }, onInvalidSubmit)
 
 const onAddItem = () => {
-  push({ id: 0, url: '' })
+  push({ id: fields.value.length + 1 , url: '' })
 }
 </script>
 
