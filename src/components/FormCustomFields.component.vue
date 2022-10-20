@@ -3,7 +3,7 @@
 import { ref } from 'vue'
 import { useForm } from 'vee-validate'
 import type { InvalidSubmissionContext } from 'vee-validate'
-import { string as yupString, object as yupObject, ref as yupRef } from 'yup'
+import { string as yupString, object as yupObject, ref as yupRef, array as yupArray } from 'yup'
 
 import CustomInput from '@/components/controls/CustomInput.vue'
 import CustomCheckbox from '@/components/controls/CustomCheckbox.vue'
@@ -20,7 +20,8 @@ const validationSchema = yupObject({
   firstName: yupString().required('This is required field'),
   lastName: yupString().required('This is required field'),
   pwd: yupString().required('This is required field').min(6, 'Must at least 6 characters'),
-  confirmPwd: yupString().required().oneOf([yupRef('pwd')], 'Passwords do not match')
+  confirmPwd: yupString().required().oneOf([yupRef('pwd')], 'Passwords do not match'),
+  newsletter: yupArray().min(1, 'Choose at least one channel')
 })
 
 const initialFormValues: IForm = {

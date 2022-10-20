@@ -33,14 +33,16 @@ const {
 </script>
 
 <template>
-  <label v-for="(opt, idx) in props.options" :key="idx" :for="`{name}-{idx}`" class="container">
-    {{opt.label}}
-    <input :id="`{name}-{idx}`" v-model="checkedValues" :name="name" :value="opt.value" type="checkbox" />
-    <span class="checkmark" />
-  </label>
-  <p v-show="errorMessage || meta.valid" class="help-message" >
-    {{ errorMessage }}
-  </p>
+  <div :class="{ 'has-error': !!errorMessage, success: meta.valid }">
+    <label v-for="(opt, idx) in props.options" :key="idx" :for="`{name}-{idx}`" class="container">
+      {{opt.label}}
+      <input :id="`{name}-{idx}`" v-model="checkedValues" :name="name" :value="opt.value" type="checkbox" />
+      <span class="checkmark" />
+    </label>
+    <p v-show="errorMessage || meta.valid" class="help-message" >
+      {{ errorMessage }}
+    </p>
+  </div>
 </template>
 
 <style scoped>
@@ -110,5 +112,14 @@ const {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.help-message {
+  font-size: 14px;
+  margin: 0;
+}
+
+.has-error .help-message {
+  color: var(--error-color);
 }
 </style>
