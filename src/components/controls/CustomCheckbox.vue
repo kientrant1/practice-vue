@@ -23,7 +23,7 @@ const {
   value: checkedValues,
   errorMessage,
   meta,
-} = useField(
+} = useField<string[]>(
   name,
   undefined, // validation will be passed from form level
   {
@@ -34,9 +34,9 @@ const {
 
 <template>
   <div :class="{ 'has-error': !!errorMessage, success: meta.valid }">
-    <label v-for="(opt, idx) in props.options" :key="idx" :for="`{name}-{idx}`" class="container">
+    <label v-for="(opt, idx) in props.options" :key="idx" :for="`${name}-${idx}`" class="container">
       {{opt.label}}
-      <input :id="`{name}-{idx}`" v-model="checkedValues" :name="name" :value="opt.value" type="checkbox" />
+      <input :id="`${name}-${idx}`" v-model="checkedValues" :name="name" :value="opt.value" type="checkbox" />
       <span class="checkmark" />
     </label>
     <p v-show="errorMessage || meta.valid" class="help-message" >

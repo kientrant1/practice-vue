@@ -3,30 +3,25 @@
 import { ref } from 'vue'
 import { useForm } from 'vee-validate'
 import type { InvalidSubmissionContext } from 'vee-validate'
-import { string as yupString, object as yupObject, ref as yupRef, array as yupArray } from 'yup'
 
+import { registrationSchema } from '@/validationRules/schema'
 import CustomInput from '@/components/controls/CustomInput.vue'
 import CustomCheckbox from '@/components/controls/CustomCheckbox.vue'
 import type { IOptions } from '@/components/controls/CustomCheckbox.vue'
+import CurrencyInput from '@/components/controls/CurrencyInput.vue'
 
 interface IForm {
-  firstName: string;
-  lastName: string;
+  firstName: string
+  lastName: string
+  amount: number
 }
 
 const submitValues = ref<IForm>()
 
-const validationSchema = yupObject({
-  firstName: yupString().required('This is required field'),
-  lastName: yupString().required('This is required field'),
-  pwd: yupString().required('This is required field').min(6, 'Must at least 6 characters'),
-  confirmPwd: yupString().required().oneOf([yupRef('pwd')], 'Passwords do not match'),
-  newsletter: yupArray().min(1, 'Choose at least one channel')
-})
-
 const initialFormValues: IForm = {
   firstName: '',
-  lastName: ''
+  lastName: '',
+  amount: 0
 }
 
 const listChannels: IOptions[] = [
@@ -37,7 +32,7 @@ const listChannels: IOptions[] = [
 const { handleSubmit, isSubmitting } =
   useForm<IForm>({
     initialValues: initialFormValues,
-    validationSchema: validationSchema,
+    validationSchema: registrationSchema,
   })
 
 const onInvalidSubmit = ({
@@ -72,6 +67,9 @@ const onSubmit = handleSubmit((values: IForm) => {
     <div class="row">
       <div>Choose subscrible channels</div>
       <CustomCheckbox name="newsletter" :options="listChannels" :selected-values="['email']" />
+    </div>
+    <div class="row">
+      <CurrencyInput name="amount" label="Amount Donation" :options="{currency: 'USD'}" placeholder="Input your donation amount" />
     </div>
 
     <button class="submit-btn" :disabled="isSubmitting">Submit</button>

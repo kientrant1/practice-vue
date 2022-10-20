@@ -4,7 +4,7 @@ import { useField } from 'vee-validate'
 
 interface IProps {
   type: string
-  value: string
+  value?: string
   name: string
   label: string
   placeholder?: string
@@ -25,7 +25,7 @@ const {
   handleBlur,
   handleChange,
   meta,
-} = useField(
+} = useField<string>(
   name,
   undefined, // validation will be passed from form level
   {

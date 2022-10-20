@@ -3,8 +3,8 @@
 import { ref } from 'vue'
 import { useForm, useField, ErrorMessage } from 'vee-validate'
 import type { InvalidSubmissionContext } from 'vee-validate'
-import { string as yupString, object as yupObject, boolean as yupBoolean } from 'yup'
 
+import { subscriptionSchema } from '@/validationRules/schema'
 import { isMatchEmailPattern } from '@/validationRules/emailRules'
 
 interface ISubscriptionForm {
@@ -18,14 +18,6 @@ interface ISubscriptionForm {
 }
 
 const submitValues = ref<ISubscriptionForm>()
-
-const validationSchema = yupObject({
-  subscriptionForm: yupObject({
-    email: yupString().required(),
-    note: yupString().required(),
-    newsletter: yupBoolean().required()
-  }),
-})
 
 const definedValidationSchema = {
   subscriptionForm: {
@@ -65,7 +57,7 @@ const initialFormValues: ISubscriptionForm = {
 const { handleSubmit, isSubmitting, resetForm, errors } =
   useForm<ISubscriptionForm>({
     initialValues: initialFormValues,
-    validationSchema: validationSchema,
+    validationSchema: subscriptionSchema,
   })
 
 const { value: emailValue } = useField<string>('subscriptionForm.email', validateEmailField)
