@@ -160,6 +160,6 @@ const onReset = () => {
 }
 
 .result {
-  background: yellow;
+  background-color: var(--success-bg-color);
 }
 </style>

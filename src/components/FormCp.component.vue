@@ -51,6 +51,6 @@ const validateEmail = async (value: any) => {
 }
 
 .result {
-  background: yellow;
+  background-color: var(--success-bg-color);
 }
 </style>

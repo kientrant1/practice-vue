@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormCp from '@/components/FormCp.component.vue'
 import FormComposition from '@/components/FormComposition.component.vue'
+import FormCustomFields from '@/components/FormCustomFields.component.vue'
 </script>
 
 <template>
@@ -8,4 +9,6 @@ import FormComposition from '@/components/FormComposition.component.vue'
   <FormCp />
   <GlobalHeader header="Form Composition" />
   <FormComposition />
+  <GlobalHeader header="Form Custom Fields" />
+  <FormCustomFields />
 </template>
