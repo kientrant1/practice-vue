@@ -11,7 +11,7 @@ export const subscriptionSchema = yupObject({
   subscriptionForm: yupObject({
     email: yupString().required(),
     note: yupString().required(),
-    newsletter: yupBoolean().required()
+    newsletter: yupBoolean().required(),
   }),
 })
 
@@ -27,3 +27,15 @@ export const registrationSchema = yupObject({
   newsletter: yupArray().min(1, 'Choose at least one channel'),
   amount: yupNumber().max(200).min(1),
 })
+
+export const formStepSchema = [
+  yupObject({
+    fullName: yupString().required().label('Full Name'),
+    email: yupString().required().email().label('Email Address'),
+  }),
+  yupObject({
+    favoriteDrink: yupString()
+      .required()
+      .oneOf(['coffee', 'tea', 'soda'], 'Choose a drink'),
+  }),
+]

@@ -2,18 +2,22 @@
 import { toRef } from 'vue'
 import { useField } from 'vee-validate'
 
+export interface IOptions {
+  label: string
+  value: string
+}
+
 interface IProps {
-  type: string
   value?: string
   name: string
   label: string
   placeholder?: string
+  options: IOptions[]
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  type: 'text',
   value: '',
-  placeholder: ''
+  placeholder: 'Please select a option'
 })
 /**
  * Needs to know if the field name changes (common case v-for to generate list inputs)
@@ -21,10 +25,8 @@ const props = withDefaults(defineProps<IProps>(), {
  */
 const name = toRef(props, 'name');
 const {
-  value: inputValue,
+  value: selectedValue,
   errorMessage,
-  handleBlur,
-  handleChange,
   meta,
 } = useField<string>(
   name,
@@ -36,17 +38,12 @@ const {
 </script>
 
 <template>
-  <div class="text-input" :class="{ 'has-error': !!errorMessage, success: meta.valid }">
+  <div class="dropdown-input" :class="{ 'has-error': !!errorMessage, success: meta.valid }">
     <label :for="name">{{ props.label }}</label>
-    <input
-      :id="name"
-      :name="name"
-      :type="props.type"
-      :value="inputValue"
-      :placeholder="placeholder"
-      @input="handleChange"
-      @blur="handleBlur"
-    />
+    <select :id="name" v-model="selectedValue" :name="name">
+      <option>{{ props.placeholder }}</option>
+      <option v-for="(opt, idx) in props.options" :key="idx" :value="opt.value">opt.label</option>
+    </select>
     <p v-show="errorMessage || meta.valid" class="help-message" >
       {{ errorMessage }}
     </p>
@@ -54,7 +51,7 @@ const {
 </template>
 
 <style scoped>
-.text-input {
+.dropdown-input {
   position: relative;
   margin-bottom: calc(1em * 1.5);
   width: 100%;
@@ -67,7 +64,7 @@ label {
   font-weight: bold;
 }
 
-input {
+select {
   border-radius: 5px;
   border: 2px solid transparent;
   padding: 15px 10px;
@@ -78,7 +75,7 @@ input {
     background-color 0.3s ease-in-out;
 }
 
-.success input {
+.success select {
   background-color: var(--success-bg-color);
 }
 
